@@ -60,9 +60,6 @@ Aplicación móvil desarrollada con React Native para la gestión de inventarios
 | /api/auth/login | POST | Iniciar sesión |
 | /api/users | GET | Listar usuarios |
 | /api/products | GET/POST/PUT/DELETE | Gestión de productos |
-| /api/categories | GET/POST/PUT/DELETE | Gestión de categorías |
-
-(Reemplaza con tus endpoints reales si son diferentes)
 
 ## KANBAN
 El proyecto se organizó mediante Trello/GitHub Projects, siguiendo metodología KANBAN:
@@ -71,14 +68,12 @@ El proyecto se organizó mediante Trello/GitHub Projects, siguiendo metodología
 - In Progress: Tareas en desarrollo
 - Done: Tareas completadas
 
-## Capturas de Pantalla
-(Reemplaza con tus imágenes reales)
-- Pantalla principal con Drawer Navigator
-- Top Tab Navigator con categorías
-- Lista de productos y alertas de stock
-- Escáner QR funcionando
+## Autores
+Angel Eduardo Castillo Nevarez 
+Emiliano Holguin Flores
+Alan Mauricio Alvarado Martinez
+Oscar Leonardo Pérez Romero
+María Fernanda Guerrero Calderón
 
-## Autor
-Angel Castillo  
-Semestre: 3  
-Proyecto: Actividad 6 – Desarrollo de Apps Móviles
+Semestre: 6
+Proyecto: Actividad 6

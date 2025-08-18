@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Alert, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Alert,
+  TouchableOpacity,
+  ActivityIndicator,
+  ScrollView
+} from 'react-native';
 import { registerUser } from '../services/authService';
 
 const RegisterScreen = ({ navigation }: any) => {
@@ -23,11 +32,19 @@ const RegisterScreen = ({ navigation }: any) => {
 
     setIsLoading(true);
     try {
-      await registerUser(name, email, password);
+      await registerUser(name, email, password); // 👈 ya no mandamos role si no existe
       Alert.alert('¡Registro exitoso!', 'Tu cuenta ha sido creada correctamente');
       navigation.navigate('Login');
     } catch (err: any) {
-      Alert.alert('Error', err.response?.data?.message || 'No se pudo completar el registro. Intenta nuevamente.');
+      const errorData = err.response?.data;
+
+      if (errorData?.errors) {
+        // Si vienen errores de validación desde express-validator
+        const messages = errorData.errors.map((e: any) => `• ${e.msg}`).join('\n');
+        Alert.alert('Errores de validación', messages);
+      } else {
+        Alert.alert('Error', errorData?.message || 'No se pudo completar el registro. Intenta nuevamente.');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -73,7 +90,7 @@ const RegisterScreen = ({ navigation }: any) => {
         />
       </View>
 
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.registerButton}
         onPress={handleRegister}
         disabled={isLoading}
@@ -85,7 +102,7 @@ const RegisterScreen = ({ navigation }: any) => {
         )}
       </TouchableOpacity>
 
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.loginLink}
         onPress={() => navigation.navigate('Login')}
       >
